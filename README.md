@@ -1,4 +1,4 @@
-# WorkBuddy Skills 备份仓库
+# Skills 备份仓库
 
 > **作者：Yin**  
 > 本仓库由 Yin 维护，存放 WorkBuddy AI 助手的原创 Skills（`agent_created: true`）。
