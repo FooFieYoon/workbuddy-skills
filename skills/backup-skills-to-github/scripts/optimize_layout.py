@@ -146,7 +146,7 @@ cp -r skills/<skill-name> <project-root>/.workbuddy/skills/
 ## 仓库结构
 
 ```
-workbuddy-skills/
+scholar-forge/
 ├── README.md
 └── skills/
     ├── <skill-name>/

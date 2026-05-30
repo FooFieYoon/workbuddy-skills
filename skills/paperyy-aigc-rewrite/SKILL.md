@@ -2,6 +2,7 @@
 name: paperyy-aigc-rewrite
 description: 教育科研论文PaperYY平台AIGC检测降重改写工具。当用户需要对学术论文、教研论文、学位论文进行AIGC检测率降低、AI痕迹去除、人工化深度改写时使用。覆盖从分析原文AI特征→逐段人工化改写→docx格式保留输出→验证交付的完整工作流。触发关键词：AIGC降重、降AIGC率、论文改写、去AI痕迹、PaperYY、人工智能检测、查重降重、论文人工化。
 agent_created: true
+author: Yin
 ---
 
 # PaperYY AIGC检测降重改写

@@ -6,6 +6,7 @@ description: >
   支持任意学术年会/报告文集场景，不限于特定会议。
   触发场景：用户提供学术年会通知材料或报告文集PDF，需要撰写符合该会议/文集风格的高质量学术报告/论文。
 agent_created: true
+author: Yin
 version: "2.0"
 ---
 

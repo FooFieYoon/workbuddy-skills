@@ -1,12 +1,12 @@
 ---
 name: backup-skills-to-github
 author: Yin
-description: "备份 WorkBuddy 原创 Skills 到 GitHub 仓库。当用户说\"备份 skills\"、\"备份 skill\"、\"上传 skills 到 github\"、\"backup my skills\"、\"sync skills to github\"时触发。自动扫描 agent_created 的原创 skill，创建/更新 GitHub 仓库，通过 API 上传所有文件。"
+description: "备份原创 Skills 到 GitHub ScholarForge 仓库。当用户说\"备份 skills\"、\"备份 skill\"、\"上传 skills 到 github\"、\"backup my skills\"、\"sync skills to github\"时触发。自动扫描 agent_created 的原创 skill，创建/更新 GitHub 仓库，通过 API 上传所有文件。"
 ---
 
 # Backup Skills to GitHub
 
-将 WorkBuddy 原创 Skills（`agent_created: true`）备份到 GitHub 仓库。
+将原创 Skills（`agent_created: true`）备份到 GitHub ScholarForge 仓库。
 
 ## 触发条件
 
@@ -44,7 +44,7 @@ gh repo view <username>/workbuddy-skills 2>&1
 
 不存在时创建：
 ```bash
-gh repo create workbuddy-skills --public --description "WorkBuddy 原创 Skills 备份"
+gh repo create scholar-forge --public --description "WorkBuddy 原创 Skills 备份"
 ```
 
 ### 第四步：上传文件

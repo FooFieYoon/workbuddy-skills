@@ -1,182 +1,218 @@
-# WorkBuddy Skills
+# ScholarForge / 学术匠心工坊
 
-> 收录由 Hermes Agent 创建、为 [WorkBuddy](https://www.workbuddy.ai) 优化的原创 AI 技能包（Skills）。每个 Skill 均为独立的 SKILL.md 文件，可在 WorkBuddy 中原生使用，也可迁移至 Cursor、Claude Desktop 等主流 AI 工具——详见 [`docs/tools-guide.md`](docs/tools-guide.md)。
+> AI 驱动的学术写作与知识产权工具集 —— 从选题到成稿，从代码到软著。
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/Skills-6-blue)](skills/)
 
 ---
 
-## 仓库目录
+## 简介
+
+ScholarForge（学术匠心工坊）是一套面向研究人员、教师和开发者的 AI 技能合集，覆盖学术论文全流程写作、AIGC 检测降重改写，以及软件著作权登记材料自动生成。
+
+所有技能均为 Markdown 格式的指令文件（SKILL.md），可导入到支持自定义指令的主流 AI 编程平台使用。
+
+---
+
+## 仓库结构
 
 ```
-workbuddy-skills/
-├── README.md
-├── docs/
-│   └── tools-guide.md                         # 多平台迁移指南
-└── skills/
-    ├── academic-conference-paper-writer/       # 学术年会论文写作
-    │   └── SKILL.md
-    ├── academic-paper-writer/                  # 通用学术论文写作
-    │   ├── SKILL.md
-    │   └── references/                         # 写作风格/论文结构/引用格式
-    │       ├── citation-formats.md
-    │       ├── default-style-guide.md
-    │       ├── paper-structures.md
-    │       └── writing-style.md
-    ├── backup-skills-to-github/                # Skills 备份与同步
-    │   ├── SKILL.md
-    │   ├── assets/
-    │   ├── references/
-    │   │   ├── api_reference.md
-    │   │   └── github_api_notes.md
-    │   └── scripts/
-    │       ├── backup_skills.py                # 核心备份脚本
-    │       ├── scan_skills.py                  # 技能扫描
-    │       ├── optimize_layout.py              # 布局优化
-    │       └── example.py
-    ├── edu-research-paper/                     # 教学科研论文撰写
-    │   └── SKILL.md
-    ├── paperyy-aigc-rewrite/                   # AIGC 检测降重改写
-    │   ├── SKILL.md
-    │   ├── references/
-    │   │   ├── aigc_detection_rules.md         # AIGC 检测规则参考
-    │   │   └── rewrite_examples.md             # 改写示例
-    │   └── scripts/
-    │       └── rewrite_docx.py                 # docx 改写核心脚本
-    └── project-softcopyright-generator/        # 软件著作权材料生成
-        ├── SKILL.md
-        ├── references/
-        │   ├── application-fields.md            # 申请领域参考
-        │   └── design-spec.md                   # 设计规范
-        └── templates/                           # 生成模板
-            ├── run-project-softcopyright-generator-template.py
-            ├── generate-application-info-template.py
-            ├── generate-source-template.py
-            ├── generate-doc-template.py
-            ├── propose-code-selection-template.py
-            └── render-print-docx-template.py
+scholar-forge/
+├── skills/                                   # 技能包目录
+│   ├── academic-conference-paper-writer/      # 学术年会论文写作
+│   ├── academic-paper-writer/                 # 通用学术论文写作
+│   │   └── references/                        #   结构/引文/风格参考
+│   ├── edu-research-paper/                    # 教学科研论文写作
+│   ├── paperyy-aigc-rewrite/                  # AIGC 检测降重改写
+│   │   ├── references/                        #   检测规则+改写范例
+│   │   └── scripts/                           #   docx 段落替换脚本
+│   ├── project-softcopyright-generator/        # 软著材料生成
+│   │   ├── templates/                         #   6 个流水线模板脚本
+│   │   └── references/                        #   申请字段规范+设计规范
+│   └── backup-skills-to-github/               # 技能备份同步
+│       └── scripts/                           #   扫描/上传/整理脚本
+└── docs/                                      # 文档目录
+    └── tools-guide.md                         #   工具配置指南
 ```
 
 ---
 
-## 已收录 Skills（6 个）
+## 技能一览
 
-### 1. `academic-conference-paper-writer` — 学术年会论文全流程写作助手
+### 1. 学术年会论文写作助手
+**`academic-conference-paper-writer`**
 
-基于目标报告文集的风格规范（通过 PDF 样本分析自动提取），从会议通知材料出发自动完成：选题推荐 → 资料搜索 → 论文生成 → 图表匹配 → 文档排版 → 迭代修改。
+基于目标报告文集的风格规范（自动分析 PDF 样本），从会议通知材料出发，全流程完成选题推荐、资料搜索、论文生成、图表匹配、排版输出到迭代修改。
 
-| 项目 | 内容 |
-|------|------|
-| 适用场景 | 学术年会论文、会议报告文集投稿 |
-| 触发短语 | "学术年会论文"、"会议报告"、"按会议模板写论文" |
-| 核心能力 | PDF 风格提取、选题推荐、自动排版 |
+| 触发关键词 | 适用场景 |
+|-----------|---------|
+| 学术年会论文、会议征文、报告文集、年会投稿、会议论文写作 | 提供学术年会通知或往届论文集，需要撰写符合该会议风格的高质量学术报告 |
 
----
-
-### 2. `academic-paper-writer` — 通用学术论文全流程写作助手
-
-支持任意学科领域（工程、教育、社科、管理、医学、计算机等）的学术期刊论文、会议论文、研究报告端到端写作。
-
-| 项目 | 内容 |
-|------|------|
-| 适用场景 | 期刊投稿、学位论文、研究报告 |
-| 触发短语 | "写学术论文"、"投稿期刊"、"文献综述"、"论文选题" |
-| 核心能力 | 选题分析、文献检索、大纲设计、逐章生成、Word 排版输出 |
-| 附加资料 | 4 份参考文献（写作风格、论文结构、引用格式、默认风格指南） |
+**核心能力：**
+- PDF 风格自动学习 —— 从往届文集中提取结构模式、标题体例、句式特征
+- 选题推荐 —— 综合分析政策/期刊/案例，生成 3–5 个选题并标注可行支撑
+- 逐章生成 —— 引言→理论→核心实践→成效→启示→结论
+- 图表匹配 —— 自动识别配图位置，生成流程图/柱状图/框架图
+- Word 排版输出 —— 严格按会议模板输出格式化 .docx
 
 ---
 
-### 3. `edu-research-paper` — 教学科研论文撰写辅助
+### 2. 通用学术论文写作助手
+**`academic-paper-writer`**
 
-面向中小学及高校教师、教育科研工作者，覆盖课题研究报告、期刊投稿论文、结题报告等常见教学科研文体。
+支持任意学科领域（工程、教育、社科、管理、医学、计算机等）的期刊论文、会议论文、研究报告端到端写作。
 
-| 项目 | 内容 |
-|------|------|
-| 适用场景 | 教学科研论文、课题研究报告、结题报告 |
-| 触发短语 | "教育科研论文"、"课题研究"、"研究方法怎么写"、"论文图表规范" |
-| 核心能力 | 选题框架、文献综述、研究方法、图表规范、先文后图表 |
+| 触发关键词 | 适用场景 |
+|-----------|---------|
+| 学术论文写作、期刊投稿、论文选题、论文大纲、文献综述、SCI 论文、核心期刊、研究报告、论文润色 | 提供投稿通知或选题，需要从选题到成稿的完整写作流程支持 |
 
----
+**核心能力：**
+- 多学科适配 —— 支持实证研究/方法提出/综述/案例研究/理论构建等多种论文类型
+- 文献检索与综述 —— 自动生成文献检索策略并整理资料清单
+- 大纲设计 —— 根据论文类型推荐对应结构模板
+- 逐章生成 —— 引言→文献综述→方法/机制→结果/成效→讨论→结论
+- 参考文献管理 —— 支持 GB/T 7714、APA、IEEE、Vancouver 等多种格式
 
-### 4. `paperyy-aigc-rewrite` — PaperYY AIGC 检测降重改写
-
-针对 PaperYY 平台 AIGC 检测规则对学术论文进行系统性人工化改写，将 AIGC 疑似率控制在 14%~16% 目标值，同时保留原文的研究框架、数据、参考文献和学术术语。
-
-| 项目 | 内容 |
-|------|------|
-| 适用场景 | 学术论文 AIGC 降重、学位论文去 AI 痕迹 |
-| 触发短语 | "AIGC降重"、"去除AI痕迹"、"论文人工化改写"、"PaperYY 查重" |
-| 核心能力 | 结构打散、叙事注入、口语化重写、docx 格式保留输出 |
-| 附加资料 | AIGC 检测规则参考、改写示例、Python 改写脚本 |
+**内置参考文档：** 论文结构模板、写作风格指南、引文格式手册、默认排版规范
 
 ---
 
-### 5. `project-softcopyright-generator` — 软件著作权登记材料生成器
+### 3. 教学科研论文撰写辅助
+**`edu-research-paper`**
 
-读取本地项目代码，自动分析项目结构、功能模块、技术架构，生成适合中国计算机软件著作权登记使用的全套申报材料。
+面向中小学及高校教师，专注教育科研论文的全流程写作指导，覆盖课题研究报告、期刊投稿论文、结题报告等常见类型。
 
-| 项目 | 内容 |
-|------|------|
-| 适用场景 | 软件著作权登记、版权申报材料 |
-| 触发短语 | "软著"、"软件著作权"、"版权登记"、"生成软著材料" |
-| 核心能力 | 代码分析、模块梳理、申请信息生成、源程序文档生成 |
-| 附加资料 | 6 个 Python 模板脚本、申请领域参考、设计规范文档 |
+| 触发关键词 | 适用场景 |
+|-----------|---------|
+| 教学科研论文、教育论文、课题报告、结题报告、教研论文、教学方法、课例研究、教学案例、论文框架 | 教师需要撰写教育类论文，从选题策略到各章节规范的全流程指导 |
 
----
-
-### 6. `backup-skills-to-github` — Skills 备份与同步工具
-
-自动扫描所有 `agent_created: true` 的原创 Skills，通过 GitHub API 一键备份到远程仓库，支持增量更新与文件级同步。
-
-| 项目 | 内容 |
-|------|------|
-| 适用场景 | Skills 版本管理、跨设备同步、开源分享 |
-| 触发短语 | "备份我的 skills"、"同步 skills 到 GitHub" |
-| 核心能力 | 自动扫描、GitHub API 上传、增量更新 |
-| 附加资料 | 3 个 Python 脚本、GitHub API 参考文档 |
+**核心能力：**
+- 选题策略 —— 四大选题原则（创新性/真实性/切口精准/可行性）+ 题目拟定三要素
+- 结构化框架 —— 期刊论文标准结构、课题结题报告完整结构
+- 逐节撰写指南 —— 摘要四要素、引言三段式、文献综述"卖鞋逻辑"、研究设计方法选用
+- 图表规范 —— 全文连续编号、图题表题位置、先文后图表原则、图表类型选用指南
+- 质量检查清单 —— 15 条自查项覆盖全篇常见问题
 
 ---
 
-## 快速开始
+### 4. AIGC 检测降重改写
+**`paperyy-aigc-rewrite`**
 
-### 原生安装（WorkBuddy）
+针对 PaperYY 平台 AIGC 检测规则，对学术论文进行系统性人工化深度改写，目标将 AIGC 疑似率控制在 14%–16%。
+
+| 触发关键词 | 适用场景 |
+|-----------|---------|
+| AIGC 降重、降 AIGC 率、去 AI 痕迹、论文人工化、PaperYY、人工智能检测、查重降重、论文改写 | 提供 .docx 论文文件，需要降低 AIGC 检测疑似率 |
+
+**核心能力：**
+- AI 特征识别 —— 自动定位政策引用开篇、演进叙事、"一方面…另一方面…"、"研究表明"等高风险句式
+- 逐段改写 —— 摘要改写、引言重组、文献综述叙事化、结果分析去模板化、结论自然收尾
+- 全局替换规则 —— 高风险词（深度融合/赋能/重构/路径优化→人工化替代表达）
+- docx 格式保留 —— 替换脚本保持原文段落格式、字体、字号、表格、图片不变
+- 数据安全约束 —— 统计数字、p 值、参考文献、标题层级、专业术语原样保留
+
+---
+
+### 5. 软件著作权材料生成器
+**`project-softcopyright-generator`**
+
+读取本地项目代码，自动分析项目结构、功能模块、技术架构，生成软著申请所需的系统说明文档与源代码文档。
+
+| 触发关键词 | 适用场景 |
+|-----------|---------|
+| 软著申请、软件著作权、著作权登记、代码文档、源码文档、软著材料、版权登记 | 已有本地项目代码，需要整理软著申请资料 |
+
+**核心能力：**
+- 项目扫描 —— 自动分析技术栈、目录结构、入口文件、核心模块
+- 建议稿生成 —— 输出软件全称/简称/版本/功能/技术特点/模块划分建议
+- 代码候选管理 —— 生成候选清单 + 可编辑选择 JSON，人工确认后生成正式文档
+- 分页代码抽取 —— 前 30 页 + 后 30 页，每页 60 行，保持代码连续性
+- 正式文档输出 —— 系统说明文档 .docx + 源代码文档 .docx + 申请信息 .txt
+
+**内置模板脚本：** 项目扫描、建议稿生成、代码候选管理、说明文档生成、源代码文档生成、.docx 渲染
+
+---
+
+### 6. 技能备份同步
+**`backup-skills-to-github`**
+
+内部工具，用于将原创技能自动扫描并同步到 GitHub 仓库进行版本管理。
+
+| 触发关键词 | 适用场景 |
+|-----------|---------|
+| 备份技能、上传技能、同步到 GitHub、backup skills、sync to github | 需要将本地技能同步到远程仓库进行版本管理或分享 |
+
+---
+
+## 使用方法
+
+### 平台兼容性
+
+本仓库中的技能采用 Markdown + YAML frontmatter 格式（SKILL.md），兼容以下主流 AI 平台：
+
+| 平台 | 使用方式 |
+|------|---------|
+| **CodeBuddy** | 「设置 → Skills 管理 → 从文件夹安装」，选择对应 skill 子目录 |
+| **Cursor** | 将 `SKILL.md` 内容复制到项目根目录 `.cursorrules` 中，或将整个 `skills/` 目录放入项目的 `.cursor/instructions/` |
+| **Claude Code** | 将 `SKILL.md` 内容放入 `CLAUDE.md` 文件（项目级）或通过 `/add-instructions` 导入 |
+| **GitHub Copilot** | 将 `SKILL.md` 内容粘贴到 `.github/copilot-instructions.md` |
+| **Windsurf** | 将 `SKILL.md` 内容写入 `.windsurfrules` |
+| **ChatGPT Projects** | 在 ChatGPT 的「自定义指令」或 Project 设置中粘贴 `SKILL.md` 的核心指令部分 |
+| **通用 AI 对话** | 将 `SKILL.md` 中 `---` 分隔线之后的内容作为系统提示词直接粘贴使用 |
+
+### 快速导入（CodeBuddy）
 
 ```bash
-# 克隆仓库
-git clone https://github.com/FooFieYoon/workbuddy-skills.git
-
-# 安装到用户级（所有项目可用）
-cp -r workbuddy-skills/skills/<skill-name> ~/.workbuddy/skills/
-
-# 安装到项目级（仅当前项目）
-cp -r workbuddy-skills/skills/<skill-name> .workbuddy/skills/
+git clone https://github.com/FooFieYoon/scholar-forge.git ~/scholar-forge/
+# 然后在 CodeBuddy 设置中选择「从文件夹安装」，定位到 ~/scholar-forge/skills/
 ```
 
-重启 WorkBuddy 后，直接用自然语言触发。
+### 手动使用
 
-### 迁移到其他 AI 工具
+1. 浏览 [skills/](skills/) 目录，找到你需要的技能
+2. 打开对应的 `SKILL.md` 文件，阅读技能说明和触发关键词
+3. 根据你使用的 AI 平台，按上表方式导入
+4. 部分技能包含 `scripts/` 和 `templates/` 子目录，导入时请保持目录结构完整
 
-详见 [`docs/tools-guide.md`](docs/tools-guide.md) — 涵盖 Cursor、VS Code + Continue、Claude Desktop、Cherry Studio、Open WebUI 等工具的具体迁移方法。
+### 跨平台迁移注意事项
+
+部分技能包含 Python 脚本（如 `paperyy-aigc-rewrite/scripts/rewrite_docx.py`），迁移到其他平台时需：
+
+1. 复制完整的 skill 目录（包含 `scripts/`、`templates/`、`references/` 子目录）
+2. 确保目标环境已安装 Python 3.x 及所需依赖
+3. 各技能的具体依赖见对应 `SKILL.md` 中的工具速查表
+
+详细配置指南参见 [`docs/tools-guide.md`](docs/tools-guide.md)。
 
 ---
 
-## 贡献
+## 技术说明
 
-本仓库由 Hermes Agent 自动维护。欢迎通过 Issue / Pull Request 贡献新的 Skill 或提出改进建议：
+- **语言**：所有技能以简体中文为核心工作语言
+- **格式**：SKILL.md（Markdown + YAML frontmatter）
+- **脚本依赖**：Python 3.x（部分技能需要 `python-docx` 等库）
+- **文档输出**：.docx（Word）、.txt、.md
 
-1. Fork 本仓库
-2. 在 `skills/` 下创建新的 Skill 目录（包含 `SKILL.md`）
-3. `SKILL.md` 中需包含 `agent_created: true` 标记
-4. 提交 Pull Request
+---
+
+## 维护者
+
+**Yin** — 所有技能由 AI Agent 创建，Yin 负责维护与迭代。
 
 ---
 
 ## 许可证
 
-MIT License
+[MIT License](LICENSE)
 
 ---
 
-## 关于
+## 相关链接
 
-- **仓库地址**: [github.com/FooFieYoon/workbuddy-skills](https://github.com/FooFieYoon/workbuddy-skills)
-- **维护者**: Hermes Agent
-- **所属项目**: [WorkBuddy AI 助手](https://www.workbuddy.ai)
+- 仓库地址：[github.com/FooFieYoon/scholar-forge](https://github.com/FooFieYoon/scholar-forge)
+- 问题反馈：[GitHub Issues](https://github.com/FooFieYoon/scholar-forge/issues)
+
+---
+
+*Made with ❤️ by Yin*

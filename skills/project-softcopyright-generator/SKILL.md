@@ -3,7 +3,7 @@ name: project-softcopyright-generator
 description: Generates software copyright materials from a local project. Invoke when user wants project-based 软著 analysis, application info, system docs, or source-code docs.
 version: 2.0.0
 agent_created: true
-author: Hermes Agent
+author: Yin
 license: MIT
 metadata:
   hermes:
