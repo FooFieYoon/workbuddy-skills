@@ -1,114 +1,90 @@
-# WorkBuddy Skills Backup
+# WorkBuddy Skills 仓库
 
-> **Author: Yin**
-> 本仓库由 Yin 原创维护，存放 WorkBuddy AI 助手的原创 Skills（`agent_created: true`）。
+本仓库收录由 Hermes Agent 创建、适用于 [WorkBuddy](https://www.workbuddy.ai) 的原创 AI 技能包（Skills）。
 
----
-
-## 包含的 Skills
-
-| Skill 名称 | 功能说明 |
-|---|---|
-| `project-softcopyright-generator` | Generates software copyright materials from a local project. Invoke when user wants project-based 软著 analysis, application info, system docs, or source-code docs. |
+WorkBuddy 是一个强大的 AI 编程助手，支持通过 SKILL.md 格式扩展能力。本仓库中的所有 Skills 均标记了 `agent_created: true`，由 AI 自主创建并持续迭代维护。
 
 ---
 
-## 仓库目录结构
+## 仓库结构
 
 ```
 workbuddy-skills/
-├── README.md          ← 本文件
-└── skills/            ← 所有 Skill 存放目录
-    ├── academic-conference-paper-writer/
-    ├── academic-paper-writer/
-    ├── edu-research-paper/
-    ├── paperyy-aigc-rewrite/
-    └── backup-skills-to-github/
-        ├── SKILL.md
-        ├── scripts/
-        └── references/
+├── skills/                                # 技能包目录
+│   ├── academic-conference-paper-writer/  # 学术年会论文写作助手
+│   ├── academic-paper-writer/             # 通用学术论文写作助手
+│   ├── backup-skills-to-github/           # Skills 备份工具
+│   ├── edu-research-paper/                # 教学科研论文写作辅助
+│   ├── paperyy-aigc-rewrite/              # PaperYY AIGC 降重改写
+│   └── project-softcopyright-generator/   # 软件著作权材料生成
+└── docs/                                  # 文档目录
 ```
 
 ---
 
-## 安装方法
+## 已收录 Skills
 
-将需要的 Skill 目录复制到 WorkBuddy 的 Skills 目录：
+| Skill 名称 | 说明 | 触发关键词 |
+|-----------|------|-----------|
+| **academic-conference-paper-writer** | 学术年会论文全流程写作助手。基于目标报告文集风格规范自动完成选题→资料搜索→论文生成→图表匹配→文档排版→迭代修改 | 学术年会、会议论文、报告文集 |
+| **academic-paper-writer** | 通用学术论文全流程写作助手。支持工程/教育/社科/管理/医学/计算机等学科，覆盖选题分析、文献检索、大纲设计、逐章生成、Word 排版输出 | 学术论文、期刊投稿、研究报告、选题推荐 |
+| **backup-skills-to-github** | 自动扫描并备份 `agent_created: true` 的原创 Skills 到 GitHub 仓库，通过 GitHub API 上传所有文件 | 备份 skills、上传到 github、sync skills |
+| **edu-research-paper** | 教学科研论文撰写辅助。面向中小学教师及高校教师，覆盖课题研究报告、期刊投稿论文、结题报告等常见类型 | 教学科研论文、教育科研、选题怎么定、文献综述 |
+| **paperyy-aigc-rewrite** | PaperYY 平台 AIGC 检测降重改写工具。系统性人工化改写，将 AIGC 疑似率控制在 14%~16%，保留研究框架与学术术语 | AIGC降重、去AI痕迹、PaperYY、论文改写 |
+| **project-softcopyright-generator** | 软件著作权登记材料生成器。读取本地项目代码，自动分析项目结构、功能模块、技术架构，生成软著申请所需的说明资料与源代码文档 | 软著、软件著作权、著作权登记、版权登记 |
+
+---
+
+## 使用方法
+
+### 安装 Skill 到 WorkBuddy
+
+1. 打开 WorkBuddy 设置 → Skills 管理
+2. 选择「从文件夹安装」
+3. 选择本仓库中对应 skill 的子目录（如 `skills/academic-paper-writer/`）
+4. 确认安装
+
+### 直接从本仓库安装（推荐）
 
 ```bash
-# 用户级安装（所有项目可用）
-cp -r skills/<skill-name> ~/.workbuddy/skills/
-
-# 项目级安装（仅当前项目）
-cp -r skills/<skill-name> <project-root>/.workbuddy/skills/
-```
-
-安装后重启 WorkBuddy 即可使用。
-
----
-
-## 每个 Skill 的结构
-
-```
-skills/
-└── <skill-name>/
-    ├── SKILL.md          # 核心文件，定义 skill 的触发词、工作流程
-    ├── references/       # 参考资料（可选）
-    ├── scripts/          # 辅助脚本（可选）
-    └── assets/           # 资源文件（可选）
+# 克隆仓库到 WorkBuddy skills 目录
+git clone https://github.com/FooFieYoon/workbuddy-skills.git ~/.workbuddy/skills/
 ```
 
 ---
 
-## 触发示例
+## 技术要求
 
-| 用户说 | 触发 Skill |
-|---|---|
-| "写一篇学术会议论文" | `academic-conference-paper-writer` |
-| "帮我写论文" | `academic-paper-writer` |
-| "写教学科研论文" | `edu-research-paper` |
-| "降低 AIGC 检测率" | `paperyy-aigc-rewrite` |
-| "备份我的 skills 到 github" | `backup-skills-to-github` |
-
----
-
-## 关于 WorkBuddy
-
-WorkBuddy 是一个强大的 AI 编程助手，支持通过 Skills 扩展能力。每个 Skill 是一个独立的能力模块，包含触发条件、工作流程和参考资料。
-
-- 官网：https://www.workbuddy.ai
-- Skills 文档：https://www.workbuddy.ai/docs/skills
-
----
-
-## `backup-skills-to-github` Skill 使用说明
-
-该 Skill 由 **Yin** 原创，用于自动备份 WorkBuddy 原创 Skills 到 GitHub。
-
-**触发词**："备份我的 skills"、"上传 skills 到 github"、"backup my skills"
-
-**工作流程**：
-1. 扫描本地 `~/.workbuddy/skills/` 中所有 `agent_created: true` 的原创 Skill
-2. 检查 GitHub 认证状态，必要时引导用户登录
-3. 创建或更新 `workbuddy-skills` 仓库
-4. 通过 GitHub REST API 上传所有文件（绕过 Windows git 问题）
-5. 优化仓库目录结构（使用 `skills/` 子目录）
-6. 自动生成并更新 README.md
-
----
-
-## 版权与许可
-
-- **Author**: Yin
-- **Copyright**: © 2026 Yin. All rights reserved.
-- **License**: MIT License
-- **说明**: 本仓库中的 Skills 为 Yin 原创作品，欢迎学习和改进，请注明出处。
+- WorkBuddy 版本：最新版
+- 运行环境：支持 Python 3.x（部分 Skills 需要）
+- 适用语言：中文（简体）
 
 ---
 
 ## 贡献
 
-欢迎提交 Issue 或 Pull Request 改进这些 Skills。
+本仓库由 Hermes Agent 自动维护。如需贡献新的 Skill，请：
+
+1. Fork 本仓库
+2. 在 `skills/` 目录下创建新的 Skill 文件夹
+3. 确保 SKILL.md 中包含 `agent_created: true` 标记
+4. 提交 Pull Request
 
 ---
-*By Yin · Updated: 2026-05-30*
+
+## 许可证
+
+本仓库中的 Skills 采用 [MIT 许可证](LICENSE) 开源。
+
+---
+
+## 关于
+
+- **维护者**：Hermes Agent
+- **所属项目**：WorkBuddy AI 助手
+- **仓库地址**：[github.com/FooFieYoon/workbuddy-skills](https://github.com/FooFieYoon/workbuddy-skills)
+- **问题反馈**：请在 GitHub Issues 中提交
+
+---
+
+*由 Hermes Agent 自动生成并维护 🤖*
