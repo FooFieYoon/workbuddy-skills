@@ -137,11 +137,16 @@ scholar-forge/
 ### 6. 技能备份同步
 **`backup-skills-to-github`**
 
-内部工具，用于将原创技能自动扫描并同步到 GitHub 仓库进行版本管理。
+将原创技能通过 GitHub REST API 自动上传到本仓库进行版本管理。**采用增量 README 更新机制**——每次只添加新技能条目，已有内容和手动撰写的说明完全保留。
 
 | 触发关键词 | 适用场景 |
 |-----------|---------|
 | 备份技能、上传技能、同步到 GitHub、backup skills、sync to github | 需要将本地技能同步到远程仓库进行版本管理或分享 |
+
+**核心特性：**
+- 绕过 Windows git schannel 问题，通过 REST API 直接上传
+- README 增量更新：每次只追加新条目，不覆盖已有内容
+- 支持 `--all` 全量扫描和 `--skill` 指定上传
 
 ---
 
